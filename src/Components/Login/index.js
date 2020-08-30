@@ -17,7 +17,7 @@ const NormalLoginForm = () => {
       initialValues={{
         remember: true,
       }}
-      onFinish={onFinish}
+      onSubmit={onFinish}
     >
       <Form.Item
         name="username"
@@ -50,21 +50,16 @@ const NormalLoginForm = () => {
           <Checkbox>Remember me</Checkbox>
         </Form.Item>
 
-        <a className="login-form-forgot" href="">
-          Forgot password
-        </a>
+        
       </Form.Item>
 
       <Form.Item>
         <Button type="primary" htmlType="submit" className="login-form-button">
           Log in
         </Button>
-        Or <a href="">register now!</a>
       </Form.Item>
     </Form>
   );
 };
-
-//ReactDOM.render(<NormalLoginForm />, document.getElementById('container'));
 
 export default NormalLoginForm;

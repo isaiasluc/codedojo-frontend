@@ -1,13 +1,6 @@
 import React from 'react';
-import './App.css';
-import NormalLoginForm from './Components/Login';
+import Routes from './routes';
 
-function App() {
-  return (
-    <div className="App">
-      <NormalLoginForm />
-    </div>
-  );
-}
+const App = () => <Routes />
 
 export default App;
