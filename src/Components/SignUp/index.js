@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import 'antd/dist/antd.css';
 import './index.css';
-import { Form, Input, Button, Checkbox } from 'antd';
+import { Form, Input, Button } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
 import api from '../../Services/api';
-import { Link } from 'react-router-dom';
 
-class Login extends Component {
+class SignUp extends Component {
     state = {
       username: '',
       password: '',
@@ -17,15 +17,15 @@ class Login extends Component {
       e.preventDefault();
       const { username, password } = this.state;
       if (!username || !password) {
-        this.setState({ error: "Preencha os campos acima "});
+        this.setState({ error: "Preencha todos os campos "});
         alert(this.state.error);
       } else {
         try {
-          await api.post('/authenticate', { username, password });
-          alert("Logado com sucesso");
+          await api.post('/register', { username, password });
+          alert("Usuário criado com sucesso");
         } catch(err) {
           this.setState({
-            error: "Houve um problema com o login, verifique suas credenciais"
+            error: "Houve um problema com a criação do usuário"
           })
           alert(this.state.error);
         }
@@ -36,9 +36,7 @@ class Login extends Component {
       <Form
         name="normal_login"
         className="login-form"
-        initialValues={{
-          remember: true,
-        }} 
+        
       >
         <Form.Item
           name="username"
@@ -71,25 +69,19 @@ class Login extends Component {
             onChange={e => this.setState({ password: e.target.value })}
           />
         </Form.Item>
-        <Form.Item>
-          <Form.Item name="remember" valuePropName="checked" noStyle>
-            <Checkbox>Remember me</Checkbox>
-          </Form.Item>
-
-          
-        </Form.Item>
 
         <Form.Item>
           <Button type="primary" htmlType="submit" className="login-form-button" onClick={this.handleSignIn}>
-            Log in
+            Registrar
           </Button>
+          
         </Form.Item>
         <Form.Item>
-          <Link to="/register">Registrar</Link>
+            <Link to="/">Voltar</Link>
         </Form.Item>
       </Form>
     );
   }
 }
 
-export default Login;
+export default SignUp;
